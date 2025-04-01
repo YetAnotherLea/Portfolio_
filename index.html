@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <!--META-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Léa Ballester | Portfolio</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+
+    <meta name="author" content="Léa Ballester" />
+    <meta name="description"
+    content="Développeuse web en apprentissage, passionnée par le code et la création de sites modernes."
+    />
+
+    <!--CSS-->
+    <link rel="stylesheet" href="./src/output.css">
+</head>
+<body class="bg-gray-100 text-gray-950 font-sans">
+    <div class="lg:flex lg:justify-between lg:gap-4 mx-auto min-h-screen max-w-screen-xl px-6 py-10 md:px-10 md:py-10 lg:py-0">
+        <header class="lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:w-[40%] lg:flex-col lg:justify-between lg:py-12">
+            <div class="mb-10">
+                <h1 class="text-6xl font-bold">Léa Ballester</h1>
+                <h2 class="text-4xl">Développeuse Fullstack</h2>
+                <ul class="flex flex-row mt-1">
+                    <li class="mr-1.5">
+                        <a href="https://github.com/YetAnotherLea" target="_blank" title="Github" class="hover:text-[#0b694a] hover:opacity-70">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-github">
+                                <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
+                                <path d="M9 18c-4.51 2-5-2-7-2"/>
+                            </svg>                          
+                        </a>
+                    </li>
+                    <li class="mr-1.5">
+                        <a href="https://www.linkedin.com/in/l%C3%A9a-ballester-b94984345/" title="Linkedin" class="hover:text-[#0b694a] hover:opacity-70">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-linkedin">
+                                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                                <rect width="4" height="12" x="2" y="9"/>
+                                <circle cx="4" cy="4" r="2"/>
+                            </svg>
+                        </a>
+                    </li>
+                    <li class="mr-1.5">
+                        <a href="mailto:lea.ballester@hotmail.com" title="Email" class="hover:text-[#0b694a] hover:opacity-70">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail">
+                                <rect width="20" height="16" x="2" y="4" rx="2"/>
+                                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+                            </svg>
+                        </a>
+                    </li>
+                    <li class="mr-1.5">
+                        <a href="./assets/leaballester-CV.pdf" target="_blank" title="CV" class="hover:text-[#0b694a] hover:opacity-70">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-file-user">
+                                <path d="M14 2v4a2 2 0 0 0 2 2h4"/>
+                                <path d="M15 18a3 3 0 1 0-6 0"/>
+                                <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z"/>
+                                <circle cx="12" cy="13" r="2"/>
+                            </svg>
+                        </a>
+                    </li>
+                </ul>
+                <p class="mt-6">
+                    En formation à la <a href="https://www.webacademie.org/" target="_blank" class="underline hover:text-[#0b694a]">Web@cademie</a> by <a href="https://www.epitech.eu/" target="blank" class="underline hover:text-[#0b694a]">Epitech</a>.<br>
+                </p>
+                <nav>
+                    <ol class="group mt-16 w-max">
+                        <li class="group flex items-center">
+                            <a href="#about" class="opacity-100 group-hover:opacity-30 group-hover:text-[#0b694a] hover:opacity-100 hover:text-black active:text-[#0b694a] uppercase">
+                                À propos
+                            </a>
+                        </li>
+                        <li class="group flex items-center">
+                            <a href="#skills" class="opacity-100 group-hover:opacity-30 group-hover:text-[#0b694a] hover:opacity-100 hover:text-black active:text-[#0b694a] uppercase">
+                                Compétences
+                            </a>
+                        </li>
+                        <li class="group flex items-center">
+                            <a href="#projects" class="opacity-100 group-hover:opacity-30 group-hover:text-[#0b694a] hover:opacity-100 hover:text-black active:text-[#0b694a] uppercase">
+                                Projets
+                            </a>
+                        </li>
+                        <li class="group flex items-center">
+                            <a href="#contact" class="opacity-100 group-hover:opacity-30 group-hover:text-[#0b694a] hover:opacity-100 hover:text-black active:text-[#0b694a] uppercase">
+                                Contact
+                            </a>
+                        </li>
+                    </ol>
+                </nav>
+            </div>
+            <div>
+                <ul>
+                    <li>
+                        <button class="py-1 px-2 border-1 rounded-sm mb-1" id="dark-mode">Sombre</button>
+                    </li>
+                </ul>
+                <div class="border-[#0b694a] border-1 p-3 rounded-lg">
+                    <h3 class="uppercase font-bold">Recherche alternance</h3>
+                    <p>
+                        Période et Rythme : 14 mois - 3 semaines par mois<br>
+                        Zones de recherche : Marseille, Lyon, Lille, Paris, Moulins
+                    </p>
+                </div>
+            </div>        
+        </header> 
+        <main class="pt-24 lg:w-[70%] lg:py-16">
+            <section id="about" class="mb-20">
+                <h3 class="uppercase font-bold mb-5">À propos</h3>
+                <div class="flex flex-col items-center">
+                    <div>
+                        <img src="" alt="Léa Ballester" class="w-50 h-50 object-cover border-1 border-[#0b694a] rounded-full mb-4">
+                    </div>
+                    <p>
+                        Développeuse en formation à la WebAcadémie, je me forme à la construction d'interfaces web 
+                        modernes et fonctionnelles.
+                        Ce portfolio est un aperçu de mon travail et de mon évolution dans le développement web. 
+                        Toujours curieuse, j’explore de nouvelles idées et affine mes compétences au fil des projets.
+                        <br>
+                        Bonne visite, et n’hésitez pas à me contacter !
+                    </p>
+                </div>
+            </section>
+            <section id="skills" class="mb-20">
+                <div class="mb-5">
+                    <h3 class="uppercase font-bold">Compétences</h3>
+                    <a href="https://www.francecompetences.fr/recherche/rncp/38436/" target="_blank" class="text-sm underline hover:text-[#0b694a]">
+                        Titre RNCP38436
+                    </a>
+                </div>
+                <ol>
+                    <li class="mb-4">
+                        <div>
+                            <h3 class="font-bold">Conception et cadrage de projet</h3>
+                            <p>
+                                Contexte d'apprentissage :
+                                Rédaction d'un Cahier des Charges (CDC) et de spécifications techniques en partant d'une expression de besoins, afin de cadrer un projet web dans le respect des réglementations en vigueur.
+                            </p>
+                            <ul class="ml-2 mt-1">
+                                <li>&#9655; Rédaction d'un CDC</li>
+                                <li>&#9655; Rédaction de spécifications techniques</li>
+                                <li>&#9655; Analyse des besoins et modélisation</li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="mb-4">
+                        <div>
+                            <h3 class="font-bold">Développement Front-End</h3>
+                            <p>
+                                Contexte d'apprentissage :
+                                Implémentation des interfaces utilisateur en respectant les maquettes et les normes d'accessibilité, d'ergonomie et de référencement.
+                            </p>
+                            <ul class="ml-2 mt-1">
+                                <li>&#9655; HTML, CSS, JavaScript</li>
+                                <li>&#9655; Frameworks (Bootstrap, Skeleton, Tailwind CSS, React.JS)</li>
+                                <li>&#9655; Intégration et optimisation des performances</li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="mb-4">
+                        <div>
+                            <h3 class="font-bold">Développement Back-End</h3>
+                            <p>
+                                Contexte d'apprentissage :
+                                Conception et gestion de bases de données, développement des fonctionnalités métier et sécurisation des accès utilisateur.
+                            </p>
+                            <ul class="ml-2 mt-1">
+                                <li>&#9655; PHP, SQL</li>
+                                <li>&#9655; Authentification et sécurité</li>
+                                <li>&#9655; Persistance des données</li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="mb-4">
+                        <div>
+                            <h3 class="font-bold">Déploiement et maintenance</h3>
+                            <p>
+                                Contexte d'apprentissage :
+                                Déploiement d'applications web, gestion des versions et monitoring des performances après mise en production.
+                            </p>
+                            <ul class="ml-2 mt-1">
+                                <li>&#9655; Déploiement sur serveur</li>
+                                <li>&#9655; Suivi des performances et corrections</li>
+                                <li>&#9655; Analyse des retours utilisateurs</li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="mb-4">
+                        <div>
+                            <h3 class="font-bold">Tests et validation</h3>
+                            <p>
+                                Contexte d'apprentissage :
+                                Mise en place et exécution de tests unitaires et d’intégration afin de garantir la stabilité et la fiabilité de la solution web.
+                            </p>
+                            <ul class="ml-2 mt-1">
+                                <li>&#9655; Tests unitaires</li>
+                                <li>&#9655; Tests d'intégration</li>
+                                <li>&#9655; Correction des bugs</li>
+                            </ul>
+                        </div>
+                    </li>                    
+                </ol>
+            </section>
+            <section id="projects" class="mb-20">
+                <h3 class="uppercase font-bold mb-5">Projets</h3>
+                <ul class="space-y-4 mb-5">
+                    <li class="rounded-lg px-2 py-4 border border-[#0b694a]">
+                        <div class="grid lg:grid-cols-[200px_1fr] lg:gap-x-4 items-center sm:grid-cols-[1fr] sm:place-items-center">
+                            <div class="w-[200px] aspect-video m-auto">
+                                <img src="./assets/my_tweeter.png" alt="My_Tweeter" class="object-cover rounded w-full h-full">
+                            </div>
+                            <div>
+                                <h3 class="font-bold">Tweet_Academy</h3>
+                                <p>
+                                    Une réplique des fonctionnalités clés de Twitter en utilisant PHP, JavaScript (AJAX), SQL et HTML/CSS. 
+                                    Ce projet explore la gestion des utilisateurs, la publication de tweets, les likes, les commentaires et 
+                                    l’actualisation dynamique des contenus.
+                                </p>
+                                <ul class="inline-flex mt-2">
+                                    <li class="mr-2"><a href="" target="_blank" class="underline hover:text-[#0b694a]">Démo</a></li>
+                                    <li><a href="https://github.com/YetAnotherLea/My_Tweeter" target="_blank" class="underline hover:text-[#0b694a]">GitHub</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                
+                    <li class="rounded-lg px-2 py-4 border border-[#0b694a]">
+                        <div class="grid lg:grid-cols-[200px_1fr] lg:gap-x-4 items-center sm:grid-cols-[1fr] sm:place-items-center">
+                            <div class="w-[200px] aspect-video m-auto">
+                                <img src="./assets/my_meetic.png" alt="My_Meetic" class="object-cover rounded w-full h-full">
+                            </div>
+                            <div>
+                                <h3 class="font-bold">Venus</h3>
+                                <p>
+                                    Une plateforme de rencontre avec un thème astrologique. Développement des fonctionnalités classiques 
+                                    d’un site de rencontre : profils, compatibilités, messagerie en temps réel, le tout en intégrant 
+                                    des éléments liés aux signes astrologiques.
+                                </p>
+                                <ul class="inline-flex mt-2">
+                                    <li class="mr-2"><a href="" target="_blank" class="underline hover:text-[#0b694a]">Démo</a></li>
+                                    <li><a href="https://github.com/YetAnotherLea/Venus" target="_blank" class="underline hover:text-[#0b694a]">GitHub</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                
+                    <li class="rounded-lg px-2 py-4 border border-[#0b694a]">
+                        <div class="grid lg:grid-cols-[200px_1fr] lg:gap-x-4 items-center sm:grid-cols-[1fr] sm:place-items-center"">
+                            <div class="w-[200px] aspect-video m-auto">
+                                <img src="./assets/my_cinema.png" alt="My_Cinema" class="object-cover rounded w-full h-full">
+                            </div>
+                            <div>
+                                <h3 class="font-bold">My_Cinema</h3>
+                                <p>
+                                    Une interface de gestion des films et des séances pour un cinéma. Ce projet couvre la gestion 
+                                    des projections, la réservation de places et l’administration des films en base de données.
+                                </p>
+                                <ul class="inline-flex mt-2">
+                                    <li class="mr-2"><a href="" target="_blank" class="underline hover:text-[#0b694a]">Démo</a></li>
+                                    <li><a href="https://github.com/YetAnotherLea/My_Cinema" target="_blank" class="underline hover:text-[#0b694a]">GitHub</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <div>  
+                    <a href="https://github.com/YetAnotherLea" target="_blank" class="hover:text-[#0b694a] underline">Plus de projets</a>
+                </div>
+            </section>
+            <section id="contact" class="mb-20">
+                <h3 class="uppercase font-bold mb-5">Contact</h3>
+                <div class="">
+                    <form method="POST" action="https://formspree.io/f/xwplnzab">
+                        <div>
+                            <div class="mb-2">
+                                <label class="block sr-only" for="name">Nom</label>
+                                <input class="block p-2 border-1 rounded focus:border-[#0b694a]" id="name" name="name" type="text" placeholder="Nom" >
+                            </div>
+                            <div class="mb-2">
+                                <label class="block sr-only" for="email">Mail</label>
+                                <input class="block p-2 border-1 rounded focus:border-[#0b694a]" id="email" name="email" type="email" placeholder="Mail">
+                            </div>
+                            <div class="mb-2">
+                                <label class="block sr-only" for="message">Message</label>
+                                <textarea class="block p-2 border-1 rounded max-h-60 focus:border-[#0b694a]" id="message" name="message" type="" placeholder="Message" maxlength="140"></textarea>
+                            </div>
+                            <input type="text" name="_gotcha" style="display:none">
+                        </div>
+                        <button type="submit" class="px-2 py-1 border-1 rounded active:border-[#0b694a]">Envoyer</button>
+                    </form>
+                </div>
+            </section>
+            <footer>
+                <p>
+                    Construit avec Visual Studio Code et le framework Tailwind CSS.<br>
+                    Crédit : Inspiré par la structure du site de <a href="https://brittanychiang.com/" target="_blank" class="underline hover:text-[#0b694a]">Brittany Chiang</a>, qui m’a beaucoup appris.
+                </p>
+            </footer>
+        </main>
+    </div>
+    <!-- React
+    <script type="module" src="./src/main.jsx"></script>
+    -->
+    <script src="./mode.js"></script>
+    <script src="./form.js"></script>
+</body>
+</html>
