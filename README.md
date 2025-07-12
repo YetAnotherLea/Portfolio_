@@ -1,33 +1,12 @@
-# Portfolio – V1
+# React + Vite
 
-Ce dépôt contient la première version de mon portfolio développeuse.
-Il a été conçu pour présenter mes compétences, projets et parcours de manière simple et accessible.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-## Stack technique
+Currently, two official plugins are available:
 
-* HTML5
-* Tailwind CSS
-* JavaScript Vanilla
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Objectifs
+## Expanding the ESLint configuration
 
-* Présenter rapidement mon profil
-* Afficher mes projets en cours et réalisés
-* Mettre en avant ma recherche d'alternance (mention prévue pour suppression dans la V2)
-
-## Structure
-
-* À propos : parcours, formations, aspirations
-* Compétences : présentation synthétique
-* Projets : sélection de travaux avec captures, explications et lien GitHub
-* Contact : formulaire
-
-## Responsive
-
-* Interface adaptée aux écrans mobiles et desktop
-* Navigation simple, sans framework JS
-
-## Déploiement
-
-Il est accessible à l’adresse suivante :
-[Lien vers le portfolio](https:leaballester.com)
+If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
