@@ -1,7 +1,21 @@
+import {
+  Header,
+  Footer,
+  HeroSection,
+  Skills,
+  Projects,
+  Contact,
+} from "./components/index.tsx";
+
 function App() {
   return (
     <>
-      <h1 className="bg-red-600">App</h1>
+      <Header />
+      <HeroSection />
+      <Skills />
+      <Projects />
+      <Contact />
+      <Footer />
     </>
   );
 }
