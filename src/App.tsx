@@ -1,6 +1,7 @@
 import {
   Header,
   Footer,
+  Socials,
   HeroSection,
   Skills,
   Projects,
@@ -11,6 +12,7 @@ function App() {
   return (
     <>
       <Header />
+      <Socials />
       <HeroSection />
       <Skills />
       <Projects />
