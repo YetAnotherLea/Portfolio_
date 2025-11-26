@@ -8,6 +8,8 @@ import {
   Contact,
 } from "./components/index.tsx";
 
+import ApiGit from "./components/api/api-git.tsx";
+
 function App() {
   return (
     <>
@@ -18,6 +20,7 @@ function App() {
       <Projects />
       <Contact />
       <Footer />
+      <ApiGit />
     </>
   );
 }
