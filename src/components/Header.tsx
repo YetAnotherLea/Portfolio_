@@ -1,8 +1,19 @@
+import logo from "../../public/favicon.svg";
 function Header() {
   return (
-    <div>
-      <h1>Header</h1>
-    </div>
+    <>
+      <header>
+        <img src={logo} alt="Logo du Portfolio" />
+        <nav>
+          <ul>
+            <li>Présentation</li>
+            <li>Compétences</li>
+            <li>Projets</li>
+            <li>Contact</li>
+          </ul>
+        </nav>
+      </header>
+    </>
   );
 }
 

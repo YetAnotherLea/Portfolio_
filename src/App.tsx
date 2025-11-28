@@ -6,6 +6,7 @@ import {
   Skills,
   Projects,
   Contact,
+  Popup,
 } from "./components/index.tsx";
 
 import ApiGit from "./components/api/api-git.tsx";
@@ -21,6 +22,7 @@ function App() {
       <Contact />
       <Footer />
       <ApiGit />
+      <Popup />
     </>
   );
 }
