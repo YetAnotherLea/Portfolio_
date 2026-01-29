@@ -14,15 +14,17 @@ import ApiGit from "./components/api/api-git.tsx";
 function App() {
   return (
     <>
-      <Header />
-      <Socials />
-      <HeroSection />
-      <Skills />
-      <Projects />
-      <Contact />
-      <Footer />
-      <ApiGit />
-      <Popup />
+      <div className="flex flex-col ">
+        <Header />
+        <Socials />
+        <HeroSection />
+        <Skills />
+        <Projects />
+        <Contact />
+        <ApiGit />
+        <Popup />
+        <Footer />
+      </div>
     </>
   );
 }

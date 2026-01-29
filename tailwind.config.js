@@ -9,8 +9,8 @@ export default {
         secondary: "#63FF90",
       },
       fontFamily: {
-        title: ["Poppins", "sans-serif"],
-        text: ["Inter", "sans-serif"],
+        title: ["Kantumruy Pro", "sans-serif"],
+        text: ["Sora", "serif"],
       },
       spacing: {
         page: "1440px",
