@@ -15,7 +15,6 @@ export default function Header() {
   return (
     <header className="w-full border-b border-foreground/10 py-12 mb-12">
       <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
-        {/* COLONNE 1 : Navigation (Verticale sur PC, Horizontale sur Mobile) */}
         <nav className="md:col-span-3 flex flex-row md:flex-col flex-wrap gap-2">
           {navItems.map((item) => (
             <Link
@@ -32,7 +31,6 @@ export default function Header() {
           ))}
         </nav>
 
-        {/* COLONNE 2 : Présentation (Milieu) */}
         <div className="md:col-span-5 font-sans text-xl md:text-1xl leading-tight">
           <p>
             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quibusdam
@@ -41,7 +39,6 @@ export default function Header() {
           </p>
         </div>
 
-        {/* COLONNE 3 : Liens & Contact (Droite) */}
         <div className="md:col-span-4 font-sans text-sm md:text-right space-y-2">
           <div className="space-y-1">
             <p className="font-bold uppercase tracking-tighter text-xs opacity-50">
