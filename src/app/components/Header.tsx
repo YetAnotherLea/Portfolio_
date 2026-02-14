@@ -34,10 +34,35 @@ export default function Header() {
       <div>
         <p>Présentation</p>
         <ul>
-          <li>Github</li>
-          <li>Linkedin</li>
-          <li>Medium</li>
-          <li>CV</li>
+          <li>
+            <a href="https://github.com/YetAnotherLea" target="_blank">
+              Github
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://fr.linkedin.com/in/l%C3%A9a-ballester-b94984345"
+              target="_blank"
+            >
+              LinkedIn
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://fr.linkedin.com/in/l%C3%A9a-ballester-b94984345"
+              target="_blank"
+            >
+              Medium
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://fr.linkedin.com/in/l%C3%A9a-ballester-b94984345"
+              target="_blank"
+            >
+              CV
+            </a>
+          </li>
         </ul>
       </div>
     </header>
