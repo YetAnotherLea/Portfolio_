@@ -24,7 +24,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr" className={`${sora.variable} ${kantumruy.variable}`}>
-      <body>{children}</body>
+      <body className="bg-background text-foreground antialiased">
+        <div className="max-w-[1140px] mx-auto px-4 sm:px-8">{children}</div>
+      </body>
     </html>
   );
 }

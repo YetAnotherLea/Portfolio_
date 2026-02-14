@@ -1,6 +1,6 @@
 export default function SectionSkills() {
   return (
-    <section>
+    <section className="py-10 flex justify-between items-center w-full">
       <h2>Mes Compétences</h2>
 
       {/* BLOC 1 : DÉVELOPPEMENT WEB */}

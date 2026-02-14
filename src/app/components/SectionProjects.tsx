@@ -42,7 +42,7 @@ export default function SectionProjects() {
   }
 
   return (
-    <section>
+    <section className="py-10 flex justify-between items-center w-full">
       <h2>Mes Projets ({projects.length})</h2>
 
       {projects.length === 0 ? (

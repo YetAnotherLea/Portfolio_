@@ -59,7 +59,7 @@ export default function SectionForm() {
   };
 
   return (
-    <section>
+    <section className="py-10 flex justify-between items-center w-full">
       <h2>Contact</h2>
       {status === "SUCCESS" && <p>Merci pour votre message !</p>}
       {status === "ERROR" && <p style={{ color: "red" }}>{errorMessage}</p>}
