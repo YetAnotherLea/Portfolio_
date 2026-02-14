@@ -36,7 +36,7 @@ export default function SectionProjects() {
   if (error) {
     return (
       <section>
-        <p style={{ color: "red" }}>Impossible de charger les projets.</p>
+        <p>Impossible de charger les projets.</p>
       </section>
     );
   }
@@ -50,14 +50,7 @@ export default function SectionProjects() {
       ) : (
         <div>
           {projects.map((project) => (
-            <article
-              key={project.id}
-              style={{
-                border: "1px solid #ccc",
-                padding: "1rem",
-                margin: "1rem 0",
-              }}
-            >
+            <article key={project.id}>
               <h3>{project.name}</h3>
               <p>{project.description || "Pas de description disponible"}</p>
 
@@ -67,12 +60,11 @@ export default function SectionProjects() {
                 ))}
               </ul>
 
-              <div style={{ marginTop: "1rem" }}>
+              <div>
                 <a
                   href={project.html_url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  style={{ fontWeight: "bold" }}
                 >
                   Voir le code source
                 </a>
@@ -82,7 +74,6 @@ export default function SectionProjects() {
                     href={project.homepage}
                     target="_blank"
                     rel="noopener noreferrer"
-                    style={{ marginLeft: "1.5rem", color: "blue" }}
                   >
                     Démo en ligne
                   </a>
