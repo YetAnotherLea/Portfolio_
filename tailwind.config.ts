@@ -21,6 +21,7 @@ const config: Config = {
         sans: ['var(--font-sora)'],
         body: ['var(--font-kantumruy)'],
       },
+      
     },
   },
   plugins: [],

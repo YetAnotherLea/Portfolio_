@@ -8,7 +8,7 @@ export default function Header() {
 
   const navItems = [
     { id: "projects", label: "Projets" },
-    { id: "skills", label: "Compétences" },
+    { id: "skills", label: "Skills" },
     { id: "contact", label: "Contact" },
   ];
 
@@ -20,7 +20,7 @@ export default function Header() {
             <Link
               key={item.id}
               href={`?view=${item.id}`}
-              className={`px-4 py-1 rounded-full border border-foreground transition-all text-sm font-sans w-fit ${
+              className={`px-4 py-1 rounded-full border border-foreground transition-all text-l font-sans text-center w-[100px] ${
                 currentView === item.id
                   ? "bg-foreground text-background"
                   : "bg-transparent text-foreground hover:bg-foreground/5"
@@ -31,18 +31,18 @@ export default function Header() {
           ))}
         </nav>
 
-        <div className="md:col-span-5 font-sans text-xl md:text-1xl leading-tight">
+        <div className="md:col-span-6 font-sans text-xl md:text-1xl leading-tight">
           <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quibusdam
-            recusandae assumenda vitae labore perferendis nulla optio nam
-            consequuntur totam fuga nesciunt harum, provident illum.
+            Développeuse web full stack en apprentissage à Epitech Marseille,
+            comprendre et contribuer à la des valeurs dont j&apos;espère vous
+            donner un aperçu à travers ce portfolio.
           </p>
         </div>
 
-        <div className="md:col-span-4 font-sans text-sm md:text-right space-y-2">
+        <div className="md:col-span-3 font-sans text-sm md:text-right space-y-2">
           <div className="space-y-1">
-            <p className="font-bold uppercase tracking-tighter text-xs opacity-50">
-              Plateformes
+            <p className="text-[10px] uppercase tracking-[0.3em] opacity-40 font-sans">
+              Réseaux
             </p>
           </div>
 
@@ -50,28 +50,21 @@ export default function Header() {
             <a
               href="https://linkedin.com"
               target="_blank"
-              className="hover:text-accent2 transition-colors"
+              className="hover:text-accent2 transition-colors text-xl"
             >
               LinkedIn
             </a>
             <a
               href="https://github.com/YetAnotherLea"
               target="_blank"
-              className="hover:text-primary transition-colors"
+              className="hover:text-primary transition-colors text-xl"
             >
               GitHub
             </a>
             <a
               href="https://github.com/YetAnotherLea"
               target="_blank"
-              className="hover:text-primary transition-colors"
-            >
-              Medium
-            </a>
-            <a
-              href="https://github.com/YetAnotherLea"
-              target="_blank"
-              className="hover:text-primary transition-colors"
+              className="hover:text-primary transition-colors text-xl"
             >
               Resume
             </a>
