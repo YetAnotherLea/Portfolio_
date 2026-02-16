@@ -27,7 +27,6 @@ export default function SectionProjects() {
       });
   }, []);
 
-  // Logique d'affichage d'image : Priorité au projet sélectionné, sinon celui survolé
   const displayProject = selectedProject || hoveredProject;
 
   if (loading) {
@@ -42,7 +41,7 @@ export default function SectionProjects() {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-12 gap-12 min-h-[600px] mb-20 items-start">
-      {/* --- COLONNE GAUCHE : APERÇU (Fixe sur Desktop, Caché sur Mobile) --- */}
+      {/* COLONNE GAUCHE */}
       <div className="hidden md:block md:col-span-6 sticky top-32 h-[400px]">
         <div className="w-full h-full border border-foreground/10 bg-foreground/[0.02] overflow-hidden rounded-sm transition-all duration-500">
           {displayProject ? (
@@ -53,7 +52,7 @@ export default function SectionProjects() {
               className="w-full h-full object-cover animate-in fade-in zoom-in-95 duration-700"
               onError={(e) => {
                 e.currentTarget.src =
-                  "https://placehold.co/600x450/4e4a40/FFFDFA?text=Preview+Coming+Soon";
+                  "https://placehold.co/600x450/4e4a40/FFFDFA?text=Aperçu+indisponible";
               }}
             />
           ) : (
@@ -64,10 +63,10 @@ export default function SectionProjects() {
         </div>
       </div>
 
-      {/* --- COLONNE DROITE : LISTE OU DÉTAILS --- */}
+      {/* COLONNE DROITE */}
       <div className="md:col-span-6 flex flex-col pt-2">
         {selectedProject ? (
-          /* --- VUE DÉTAIL DU PROJET --- */
+          /* VUE DÉTAIL DU PROJET */
           <div className="animate-in slide-in-from-right-4 fade-in duration-500 space-y-8">
             <button
               onClick={() => setSelectedProject(null)}
@@ -114,36 +113,30 @@ export default function SectionProjects() {
               <div className="flex gap-10 pt-8 border-t border-foreground/10">
                 <div className="flex flex-col gap-1">
                   <span className="text-[9px] uppercase opacity-40 font-sans tracking-widest">
-                    Repository
+                    Accès au projet
                   </span>
                   <a
                     href={selectedProject.html_url}
                     target="_blank"
-                    className="font-sans text-sm font-bold underline underline-offset-4 hover:text-accent1 transition-colors"
+                    className="font-sans text-sm font-bold underline underline-offset-4 hover:text-accent2 transition-colors"
                   >
                     SOURCE_CODE
                   </a>
-                </div>
-
-                {selectedProject.homepage && (
-                  <div className="flex flex-col gap-1">
-                    <span className="text-[9px] uppercase opacity-40 font-sans tracking-widest">
-                      Deployment
-                    </span>
+                  {selectedProject.homepage && (
                     <a
                       href={selectedProject.homepage}
                       target="_blank"
-                      className="font-sans text-sm font-bold underline underline-offset-4 hover:text-secondary transition-colors"
+                      className="font-sans text-sm font-bold underline underline-offset-4 hover:text-accent1 transition-colors"
                     >
                       LIVE_DEMO
                     </a>
-                  </div>
-                )}
+                  )}
+                </div>
               </div>
             </div>
           </div>
         ) : (
-          /* --- VUE LISTE DES PROJETS --- */
+          /* VUE LISTE DES PROJETS */
           <div className="flex flex-col">
             <div className="flex justify-between items-end mb-4 px-2">
               <span className="text-[10px] uppercase tracking-[0.3em] opacity-40 font-sans">

@@ -16,6 +16,7 @@ const config: Config = {
         secondary: "#FF63DB", // Rose
         accent1: "#FF9263", // Orange
         accent2: "#AC63FF", // Violet
+        accent3: "#63D6FF", //Bleu
       },
       fontFamily: {
         sans: ['var(--font-sora)'],

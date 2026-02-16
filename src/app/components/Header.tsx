@@ -46,25 +46,25 @@ export default function Header() {
             </p>
           </div>
 
-          <div className="flex flex-col md:items-end gap-1 underline underline-offset-4 decoration-foreground/30">
+          <div className="flex flex-col md:items-end gap-1 decoration-foreground/20">
             <a
               href="https://linkedin.com"
               target="_blank"
-              className="hover:text-accent2 transition-colors text-xl"
+              className="hover:text-accent3 transition-colors text-xl underline underline-offset-4 hover:decoration-accent3"
             >
               LinkedIn
             </a>
             <a
               href="https://github.com/YetAnotherLea"
               target="_blank"
-              className="hover:text-primary transition-colors text-xl"
+              className="hover:text-accent2 transition-colors text-xl underline underline-offset-4 hover:decoration-accent2"
             >
               GitHub
             </a>
             <a
               href="https://github.com/YetAnotherLea"
               target="_blank"
-              className="hover:text-primary transition-colors text-xl"
+              className="hover:text-primary transition-colors text-xl underline underline-offset-4 hover:decoration-primary"
             >
               Resume
             </a>

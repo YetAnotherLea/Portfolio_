@@ -5,7 +5,6 @@ export interface GitHubRepo {
   html_url: string;
   homepage: string;
   topics: string[];
-  stargazers_count: number;
   language: string;
 }
 
