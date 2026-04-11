@@ -32,9 +32,9 @@ export default function Header() {
         </nav>
 
         <div className="md:col-span-6 font-sans text-xl md:text-1xl leading-tight">
+          <p className="font-bold">Léa Ballester</p>
+          <hr className="border-foreground/10 mt-1 mb-1.5" />
           <p>
-            <span className="font-bold">Léa Ballester</span>
-            <hr className="border-foreground/10 mt-1 mb-1.5" />
             Développeuse web full stack en apprentissage à Epitech Marseille, ce
             portfolio est un aperçu de mon travail et de mon évolution dans le
             développement web.
