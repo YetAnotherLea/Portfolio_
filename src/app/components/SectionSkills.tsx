@@ -23,7 +23,7 @@ export default function SectionSkills() {
         "Symphony",
       ],
       description:
-        "Conception d'applications web scalables privilégiant la performance et l'expérience utilisateur.",
+        "Conception d'applications web privilégiant la performance et l'expérience utilisateur.",
     },
     {
       title: "Cloud & Ops",

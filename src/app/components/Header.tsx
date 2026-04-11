@@ -13,7 +13,7 @@ export default function Header() {
   ];
 
   return (
-    <header className="w-full border-b border-foreground/10 py-12 mb-12">
+    <header className="w-full border-b border-foreground/10 py-11.5 mb-10">
       <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
         <nav className="md:col-span-3 flex flex-row md:flex-col flex-wrap gap-2">
           {navItems.map((item) => (
@@ -33,9 +33,11 @@ export default function Header() {
 
         <div className="md:col-span-6 font-sans text-xl md:text-1xl leading-tight">
           <p>
-            Développeuse web full stack en apprentissage à Epitech Marseille,
-            comprendre et contribuer à la des valeurs dont j&apos;espère vous
-            donner un aperçu à travers ce portfolio.
+            <span className="font-bold">Léa Ballester</span>
+            <hr className="border-foreground/10 mt-1 mb-1.5" />
+            Développeuse web full stack en apprentissage à Epitech Marseille, ce
+            portfolio est un aperçu de mon travail et de mon évolution dans le
+            développement web.
           </p>
         </div>
 
