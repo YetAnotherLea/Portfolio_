@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { GitHubRepo } from "@/app/lib/github";
+import rncpData from "@/app/api/rncp.json";
 
 export default function SectionProjects() {
   const [projects, setProjects] = useState<GitHubRepo[]>([]);
@@ -94,15 +95,18 @@ export default function SectionProjects() {
                 {selectedProject.name}
               </h2>
 
+              {/* TAGS CLASSIQUES (Technos, hors RNCP) */}
               <div className="flex gap-2 flex-wrap">
-                {selectedProject.topics.map((topic) => (
-                  <span
-                    key={topic}
-                    className="text-[10px] border border-foreground/20 px-2 py-0.5 rounded-full uppercase tracking-wider font-sans"
-                  >
-                    #{topic}
-                  </span>
-                ))}
+                {selectedProject.topics
+                  .filter((topic) => !topic.startsWith("rncp"))
+                  .map((topic) => (
+                    <span
+                      key={topic}
+                      className="text-[10px] border border-foreground/20 px-2 py-0.5 rounded-full uppercase tracking-wider font-sans"
+                    >
+                      #{topic}
+                    </span>
+                  ))}
               </div>
 
               <p className="text-xl leading-relaxed font-body text-foreground/90 max-w-xl">
@@ -110,6 +114,7 @@ export default function SectionProjects() {
                   "Ce projet GitHub ne contient pas encore de description détaillée."}
               </p>
 
+              {/* LIENS DU PROJET */}
               <div className="flex gap-10 pt-8 border-t border-foreground/10">
                 <div className="flex flex-col gap-1">
                   <span className="text-[9px] uppercase opacity-40 font-sans tracking-widest">
@@ -133,6 +138,53 @@ export default function SectionProjects() {
                   )}
                 </div>
               </div>
+
+              {/* BLOC RNCP DYNAMIQUE */}
+              {selectedProject.topics.some((topic) =>
+                topic.startsWith("rncp"),
+              ) && (
+                <div className="pt-8 border-t border-foreground/10 space-y-4">
+                  <div className="flex items-center gap-4 mb-6">
+                    <span className="text-[9px] uppercase opacity-40 font-sans tracking-widest">
+                      Compétences validées
+                    </span>
+                    <a
+                      href="https://www.francecompetences.fr/recherche/rncp/38436/"
+                      target="_blank"
+                      className="text-[10px] bg-foreground/5 px-2 py-1 rounded-sm hover:bg-foreground/10 transition-colors font-sans uppercase tracking-widest"
+                    >
+                      Titre RNCP
+                    </a>
+                  </div>
+
+                  <ul className="space-y-3">
+                    {selectedProject.topics
+                      .filter((topic) => topic.startsWith("rncp"))
+                      .map((rncpTag) => {
+                        // On cherche l'ID en ignorant la casse (minuscules/majuscules)
+                        const skill = rncpData.skills.find(
+                          (s) => s.id.toLowerCase() === rncpTag.toLowerCase(),
+                        );
+
+                        if (!skill) return null; // Sécurité si le tag n'existe pas dans le JSON
+
+                        return (
+                          <li
+                            key={skill.id}
+                            className="group flex flex-col md:flex-row md:items-baseline gap-2 md:gap-4 p-4 border border-foreground/5 bg-foreground/[0.01] hover:bg-foreground/[0.03] transition-colors rounded-sm"
+                          >
+                            <span className="text-xs font-mono font-bold text-primary whitespace-nowrap opacity-80">
+                              {skill.id}
+                            </span>
+                            <p className="text-sm font-body text-foreground/80 leading-snug">
+                              {skill.description_fr}
+                            </p>
+                          </li>
+                        );
+                      })}
+                  </ul>
+                </div>
+              )}
             </div>
           </div>
         ) : (
