@@ -149,7 +149,7 @@ export default function SectionForm() {
                 </p>
               </div>
               <p className="text-sm font-body opacity-60 max-w-[200px] md:max-w-none">
-                Recherche une alternance en cyber
+                Recherche une alternance pour Novembre 2026
               </p>
             </div>
           </div>
