@@ -63,21 +63,36 @@ export default function SectionSkills() {
     <section className="relative w-full pt-2 min-h-[calc(100vh-270px)] flex flex-col justify-between overflow-hidden">
       <div className="relative z-10 w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24">
         {/* COLONNE GAUCHE */}
-        <div className="lg:col-span-6 space-y-4">
+        <div className="lg:col-span-6 flex flex-col pt-2">
           {skillGroups.map((group, i) => (
             <div
               key={i}
               onMouseEnter={() => setActiveTab(i)}
-              className="group cursor-pointer border-b border-foreground/5 pb-6 transition-all"
+              className={`group cursor-pointer py-5 md:py-6 border-b border-foreground/10 flex justify-between items-center transition-all duration-300 ease-out ${
+                activeTab === i
+                  ? "px-4 bg-foreground/[0.01]"
+                  : "hover:px-4 hover:bg-foreground/[0.01]"
+              }`}
             >
-              <div className="flex items-baseline gap-6">
+              <div className="flex items-center gap-4 md:gap-6">
+                {/* Numéro */}
                 <span
-                  className={`text-xs font-sans transition-all duration-500 ${activeTab === i ? "opacity-100 text-primary" : "opacity-20"}`}
+                  className={`text-[10px] font-mono transition-opacity duration-300 ${
+                    activeTab === i
+                      ? "opacity-100 text-primary"
+                      : "opacity-30 group-hover:opacity-100"
+                  }`}
                 >
-                  (0{i + 1})
+                  0{i + 1}
                 </span>
+
+                {/* Titre */}
                 <h3
-                  className={`text-2xl md:text-4xl font-sans font-black uppercase tracking-tighter transition-all duration-500 ${activeTab === i ? "translate-x-4 italic" : "opacity-40 group-hover:opacity-100"}`}
+                  className={`text-2xl md:text-4xl font-sans font-black uppercase tracking-tighter transition duration-300 ease-out ${
+                    activeTab === i
+                      ? "italic translate-x-2 opacity-100"
+                      : "opacity-40 group-hover:italic group-hover:translate-x-2 group-hover:opacity-100"
+                  }`}
                 >
                   {group.title}
                 </h3>
