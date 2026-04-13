@@ -1,10 +1,12 @@
 "use client";
 
 import { useState, FormEvent } from "react";
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 
 export default function SectionForm() {
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const { executeRecaptcha } = useGoogleReCaptcha();
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -13,6 +15,12 @@ export default function SectionForm() {
     try {
       const formData = new FormData(e.target as HTMLFormElement);
 
+      if (!executeRecaptcha) {
+        alert("reCAPTCHA non chargé, réessayez.");
+        return;
+      }
+      const captchaToken = await executeRecaptcha("contact_form");
+
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -20,6 +28,7 @@ export default function SectionForm() {
           name: formData.get("name"),
           email: formData.get("email"),
           message: formData.get("message"),
+          captchaToken,
         }),
       });
 
