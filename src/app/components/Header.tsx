@@ -64,7 +64,7 @@ export default function Header() {
               GitHub
             </a>
             <a
-              href="https://github.com/YetAnotherLea"
+              href="https://leaballester.com/resume.pdf"
               target="_blank"
               className="hover:text-primary transition-colors text-xl underline underline-offset-4 hover:decoration-primary"
             >
