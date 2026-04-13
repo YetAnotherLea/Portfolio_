@@ -128,10 +128,12 @@ export default function SectionSkills() {
       </div>
 
       {/* FILIGRANE */}
-      <div className="absolute left-1/2 bottom-0 -translate-x-1/2 translate-y-1/3 pointer-events-none z-0 select-none">
-        <h3 className="text-[22vw] lg:text-[18rem] font-sans font-black uppercase leading-[0.7] opacity-[0.03] whitespace-nowrap">
-          Skills
-        </h3>
+      <div className="fixed z-0 left-1/2 bottom-0 -translate-x-1/2 translate-y-1/3 pointer-events-none z-0 select-none">
+        <div className="absolute left-1/2 bottom-0 -translate-x-1/2 translate-y-1/3 pointer-events-none z-0 select-none">
+          <h3 className="text-[18vw] lg:text-[18rem] font-body font-black uppercase leading-[0.7] opacity-[0.03] whitespace-nowrap">
+            Skills
+          </h3>
+        </div>
       </div>
     </section>
   );
