@@ -1,11 +1,6 @@
 import type { Metadata } from "next";
-import { Sora, Kantumruy_Pro } from "next/font/google";
+import { Kantumruy_Pro } from "next/font/google";
 import "./globals.css";
-
-const sora = Sora({
-  subsets: ["latin"],
-  variable: "--font-sora",
-});
 
 const kantumruy = Kantumruy_Pro({
   subsets: ["latin"],
@@ -41,7 +36,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr" className={`${sora.variable} ${kantumruy.variable}`}>
+    <html lang="fr" className={`${kantumruy.variable}`}>
       <body className="bg-background text-foreground antialiased">
         <div className="max-w-[1140px] mx-auto px-4 sm:px-8">{children}</div>
       </body>
