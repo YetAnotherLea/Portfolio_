@@ -43,8 +43,8 @@ export default function SectionProjects() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-12 gap-12 min-h-[600px] mb-20 items-start">
       {/* COLONNE GAUCHE */}
-      <div className="hidden md:block md:col-span-6 sticky top-32 h-[400px] z-10">
-        <div className="w-full h-full border border-foreground/10 bg-foreground/[0.02] overflow-hidden rounded-sm transition-all duration-500">
+      <div className="hidden md:block md:col-span-7 sticky top-32 h-[400px] z-10">
+        <div className="w-full h-[350px] border border-foreground/10 bg-foreground/[0.02] overflow-hidden rounded-sm transition-all duration-500">
           {displayProject ? (
             <img
               key={displayProject.id}
@@ -65,7 +65,7 @@ export default function SectionProjects() {
       </div>
 
       {/* COLONNE DROITE */}
-      <div className="md:col-span-6 flex flex-col pt-2">
+      <div className="md:col-span-5 flex flex-col pt-2">
         {selectedProject ? (
           /* VUE DÉTAIL DU PROJET */
           <div className="animate-in slide-in-from-right-4 fade-in duration-500 space-y-8">
