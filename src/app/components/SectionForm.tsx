@@ -9,10 +9,29 @@ export default function SectionForm() {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
+
+    try {
+      const formData = new FormData(e.target as HTMLFormElement);
+
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.get("name"),
+          email: formData.get("email"),
+          message: formData.get("message"),
+        }),
+      });
+
+      if (!res.ok) throw new Error("Erreur envoi");
+
       setSubmitted(true);
-    }, 1500);
+    } catch (error) {
+      console.error(error);
+      alert("Une erreur est survenue.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   if (submitted) {
