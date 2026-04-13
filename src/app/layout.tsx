@@ -16,6 +16,23 @@ export const metadata: Metadata = {
   title: "Léa Ballester | Portfolio",
   description:
     "Développeuse full stack en formation à la WebAcadémie, ce portfolio est un aperçu de mon travail et de mon évolution dans le développement web.",
+  openGraph: {
+    title: "Léa Ballester | Portfolio",
+    description:
+      "Développeuse full stack en formation à la WebAcadémie, ce portfolio est un aperçu de mon travail et de mon évolution dans le développement web.",
+    url: "https://lea-ballester-portfolio.vercel.app",
+    siteName: "Léa Ballester | Portfolio",
+    images: [
+      {
+        url: "https://leaballester.com/og-image.png",
+        width: 200,
+        height: 200,
+        alt: "Léa Ballester Portfolio",
+      },
+    ],
+    locale: "fr_FR",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
