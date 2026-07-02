@@ -1,10 +1,8 @@
 "use client";
-import Link from "next/link";
-import { useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 
 export default function Header() {
-  const searchParams = useSearchParams();
-  const currentView = searchParams.get("view") || "projects";
+  const [activeSection, setActiveSection] = useState("projects");
 
   const navItems = [
     { id: "projects", label: "Projets" },
@@ -12,22 +10,42 @@ export default function Header() {
     { id: "contact", label: "Contact" },
   ];
 
+  useEffect(() => {
+    const observers: IntersectionObserver[] = [];
+
+    navItems.forEach(({ id }) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) setActiveSection(id);
+        },
+        { rootMargin: "-40% 0px -55% 0px" }
+      );
+      observer.observe(el);
+      observers.push(observer);
+    });
+
+    return () => observers.forEach((o) => o.disconnect());
+  }, []);
+
   return (
     <header className="w-full border-b border-foreground/10 py-11.5 mb-10">
       <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
         <nav className="md:col-span-3 flex flex-row md:flex-col flex-wrap gap-2">
           {navItems.map((item) => (
-            <Link
+            <a
               key={item.id}
-              href={`?view=${item.id}`}
+              href={`#${item.id}`}
               className={`px-4 py-1 rounded-full border border-foreground transition-all text-l font-sans text-center w-[100px] ${
-                currentView === item.id
+                activeSection === item.id
                   ? "bg-foreground text-background"
                   : "bg-transparent text-foreground hover:bg-foreground/5"
               }`}
             >
               {item.label}
-            </Link>
+            </a>
           ))}
         </nav>
 

@@ -1,22 +1,22 @@
 "use client";
 
-import { useSearchParams } from "next/navigation";
 import SectionProjects from "@/app/components/SectionProjects";
 import SectionSkills from "@/app/components/SectionSkills";
 import SectionForm from "@/app/components/SectionForm";
 import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
 
 export default function PortfolioContent() {
-  const searchParams = useSearchParams();
-  const currentView = searchParams.get("view") || "projects";
-
   return (
     <main>
-      <section>
-        {currentView === "projects" && <SectionProjects />}
-        {currentView === "skills" && <SectionSkills />}
+      <section id="projects" className="scroll-mt-8">
+        <SectionProjects />
+      </section>
+      <section id="skills" className="scroll-mt-8">
+        <SectionSkills />
+      </section>
+      <section id="contact" className="scroll-mt-8">
         <GoogleReCaptchaProvider reCaptchaKey="6LcvPrUsAAAAAKyCZcL78SD5JiL6pSvfMtBLgs6e">
-          {currentView === "contact" && <SectionForm />}
+          <SectionForm />
         </GoogleReCaptchaProvider>
       </section>
     </main>
