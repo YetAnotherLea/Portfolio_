@@ -61,7 +61,7 @@ export default function SectionSkills() {
 
   return (
     <section className="relative w-full pt-2 min-h-[calc(100vh-270px)] flex flex-col justify-between overflow-hidden">
-      <div className="relative z-10 w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24">
+      <div className="relative z-10 w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 mb-20">
         {/* COLONNE GAUCHE */}
         <div className="lg:col-span-6 flex flex-col pt-2">
           {skillGroups.map((group, i) => (
@@ -127,13 +127,10 @@ export default function SectionSkills() {
         </div>
       </div>
 
-      {/* FILIGRANE */}
-      <div className="fixed z-0 left-1/2 bottom-0 -translate-x-1/2 translate-y-1/3 pointer-events-none z-0 select-none">
-        <div className="absolute left-1/2 bottom-0 -translate-x-1/2 translate-y-1/3 pointer-events-none z-0 select-none">
-          <h3 className="text-[18vw] lg:text-[18rem] font-body font-black uppercase leading-[0.7] opacity-[0.03] whitespace-nowrap">
-            Skills
-          </h3>
-        </div>
+      <div className="absolute inset-x-0 bottom-0 h-[6rem] overflow-hidden pointer-events-none select-none z-0">
+        <h3 className="absolute top-0 left-1/2 -translate-x-1/2 text-[18vw] lg:text-[18rem] font-body font-black uppercase leading-[0.7] opacity-[0.03] whitespace-nowrap">
+          Skills
+        </h3>
       </div>
     </section>
   );
