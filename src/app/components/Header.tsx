@@ -1,5 +1,7 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useGSAP } from "@gsap/react";
+import { gsap } from "@/app/lib/gsap";
 
 const navItems = [
   { id: "projects", label: "Projets" },
@@ -80,9 +82,69 @@ const socialLinks = [
   },
 ];
 
+function NavLinks({
+  compact,
+  activeSection,
+}: {
+  compact: boolean;
+  activeSection: string;
+}) {
+  return (
+    <nav
+      className={`flex flex-row flex-wrap gap-2 ${compact ? "" : "md:flex-col"}`}
+    >
+      {navItems.map((item) => (
+        <a
+          key={item.id}
+          href={`#${item.id}`}
+          className={`rounded-full border border-foreground transition-colors font-sans text-center ${
+            compact ? "px-3 py-0.5 text-sm" : "px-4 py-1 text-l w-[100px]"
+          } ${
+            activeSection === item.id
+              ? "bg-foreground text-background"
+              : "bg-transparent text-foreground hover:bg-foreground/5"
+          }`}
+        >
+          {item.label}
+        </a>
+      ))}
+    </nav>
+  );
+}
+
+function SocialLinks({ compact }: { compact: boolean }) {
+  return (
+    <div
+      className={`flex decoration-foreground/20 ${
+        compact
+          ? "flex-row items-center gap-4"
+          : "flex-col md:items-end gap-1"
+      }`}
+    >
+      {socialLinks.map(({ key, href, label, accent, Icon }) => (
+        <a
+          key={key}
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={label}
+          className={`transition-colors ${accent} ${
+            compact ? "text-foreground" : "text-xl underline underline-offset-4"
+          }`}
+        >
+          {compact ? <Icon className="w-5 h-5" /> : label}
+        </a>
+      ))}
+    </div>
+  );
+}
+
 export default function Header() {
   const [activeSection, setActiveSection] = useState("projects");
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [isCompact, setIsCompact] = useState(false);
+  const [expandedHeight, setExpandedHeight] = useState<number>();
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const headerRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const observers: IntersectionObserver[] = [];
@@ -104,97 +166,103 @@ export default function Header() {
     return () => observers.forEach((o) => o.disconnect());
   }, []);
 
+  // On observe l'encombrement du header, pas le header lui-même : une fois
+  // réduit il passe en position fixe, donc il resterait toujours à l'écran.
   useEffect(() => {
-    const onScroll = () => setIsScrolled(window.scrollY > 20);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    const wrapper = wrapperRef.current;
+    if (!wrapper) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsCompact(!entry.isIntersecting),
+      { threshold: 0 }
+    );
+    observer.observe(wrapper);
+
+    return () => observer.disconnect();
   }, []);
 
+  // Hauteur du header déployé : elle est réservée dans le flux pendant qu'il
+  // est réduit, sinon le contenu remonterait d'un bloc à la bascule.
+  useEffect(() => {
+    const header = headerRef.current;
+    if (isCompact || !header) return;
+
+    const measure = () => setExpandedHeight(header.offsetHeight);
+    measure();
+
+    const resizeObserver = new ResizeObserver(measure);
+    resizeObserver.observe(header);
+
+    return () => resizeObserver.disconnect();
+  }, [isCompact]);
+
+  useGSAP(
+    () => {
+      const header = headerRef.current;
+      if (!header) return;
+
+      if (isCompact) {
+        gsap.fromTo(
+          header,
+          { yPercent: -100, opacity: 0 },
+          { yPercent: 0, opacity: 1, duration: 0.4, ease: "power2.out" }
+        );
+      } else {
+        gsap.set(header, { clearProps: "all" });
+      }
+    },
+    { dependencies: [isCompact] }
+  );
+
   return (
-    <header
-      className={`sticky top-0 z-50 w-full border-b border-foreground/10 bg-background mb-10 transition-[padding] duration-300 ${
-        isScrolled ? "py-3" : "py-11.5"
-      }`}
+    <div
+      ref={wrapperRef}
+      className="mb-10"
+      style={{ height: isCompact ? expandedHeight : undefined }}
     >
-      <div
-        className={`grid grid-cols-1 md:grid-cols-12 transition-all duration-300 ${
-          isScrolled ? "gap-3 items-center" : "gap-8 items-start"
+      <header
+        ref={headerRef}
+        className={`border-b border-foreground/10 bg-background ${
+          isCompact ? "fixed inset-x-0 top-0 z-50 py-3" : "w-full py-11.5"
         }`}
       >
-        <nav
-          className={`flex flex-row flex-wrap gap-2 transition-all duration-300 ${
-            isScrolled ? "md:col-span-6" : "md:col-span-3 md:flex-col"
-          }`}
-        >
-          {navItems.map((item) => (
-            <a
-              key={item.id}
-              href={`#${item.id}`}
-              className={`rounded-full border border-foreground transition-all font-sans text-center ${
-                isScrolled ? "px-3 py-0.5 text-sm w-auto" : "px-4 py-1 text-l w-[100px]"
-              } ${
-                activeSection === item.id
-                  ? "bg-foreground text-background"
-                  : "bg-transparent text-foreground hover:bg-foreground/5"
-              }`}
-            >
-              {item.label}
-            </a>
-          ))}
-        </nav>
-
-        {!isScrolled && (
-          <div className="md:col-span-6 font-sans text-xl md:text-1xl leading-tight">
-            <p className="font-bold">Léa Ballester</p>
-            <hr className="border-foreground/10 mt-1 mb-1.5" />
-            <p>
-              Développeuse web full stack en apprentissage à Epitech Marseille, ce
-              portfolio est un aperçu de mon travail et de mon évolution dans le
-              développement web.
-            </p>
-          </div>
-        )}
-
         <div
-          className={`font-sans text-sm md:text-right transition-all duration-300 ${
-            isScrolled ? "md:col-span-6" : "md:col-span-3 space-y-2"
-          }`}
+          className={
+            isCompact
+              ? "max-w-[1140px] mx-auto px-4 sm:px-8 flex items-center justify-between gap-4"
+              : "grid grid-cols-1 md:grid-cols-12 gap-8 items-start"
+          }
         >
-          {!isScrolled && (
-            <div className="space-y-1">
-              <p className="text-[10px] uppercase tracking-[0.3em] opacity-40 font-sans">
-                Réseaux
+          <div className={isCompact ? undefined : "md:col-span-3"}>
+            <NavLinks compact={isCompact} activeSection={activeSection} />
+          </div>
+
+          {!isCompact && (
+            <div className="md:col-span-6 font-sans text-xl md:text-1xl leading-tight">
+              <p className="font-bold">Léa Ballester</p>
+              <hr className="border-foreground/10 mt-1 mb-1.5" />
+              <p>
+                Développeuse web full stack en apprentissage à Epitech Marseille,
+                ce portfolio est un aperçu de mon travail et de mon évolution dans
+                le développement web.
               </p>
             </div>
           )}
 
           <div
-            className={`flex decoration-foreground/20 transition-all duration-300 ${
-              isScrolled
-                ? "flex-row items-center justify-end gap-4"
-                : "flex-col md:items-end gap-1"
+            className={`font-sans text-sm ${
+              isCompact ? "" : "md:col-span-3 md:text-right space-y-2"
             }`}
           >
-            {socialLinks.map(({ key, href, label, accent, Icon }) => (
-              <a
-                key={key}
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={label}
-                className={`transition-colors ${accent} ${
-                  isScrolled
-                    ? "text-foreground"
-                    : "text-xl underline underline-offset-4"
-                }`}
-              >
-                {isScrolled ? <Icon className="w-5 h-5" /> : label}
-              </a>
-            ))}
+            {!isCompact && (
+              <p className="text-[10px] uppercase tracking-[0.3em] opacity-40 font-sans">
+                Réseaux
+              </p>
+            )}
+            <SocialLinks compact={isCompact} />
           </div>
         </div>
-      </div>
-    </header>
+      </header>
+    </div>
   );
 }

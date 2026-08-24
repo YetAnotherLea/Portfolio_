@@ -8,7 +8,7 @@ export default function SectionSkills() {
   const skillGroups = [
     {
       title: "Core Development",
-      role: "Architecte Frontend & Backend",
+      role: "Frontend & Backend",
       tech: [
         "HTML / CSS",
         "Sass",

@@ -4,11 +4,12 @@
   --color-background: #FFFDFA;
   --color-foreground: #4e4a40;
   
-  --color-primary: #63FF90;
+  --color-primary: #00ff4a;
   --color-secondary: #FF63DB;
   --color-accent1: #FF9263;
   --color-accent2: #AC63FF;
   --color-accent3: #63D6FF;
+  --color-contrast: #ff0900;
 
   --font-body: var(--font-kantumruy);
 }
