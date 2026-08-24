@@ -177,7 +177,7 @@ export default function SectionForm() {
                 </p>
               </div>
               <p className="text-sm font-body opacity-60 max-w-[200px] md:max-w-none">
-                Travail en tant que dévelopeuse alternante chez{" "}
+                Travail en tant que développeuse alternante chez{" "}
                 <a
                   className="underline hover:text-primary transition-colors underline-offset-4"
                   href="https://www.publicom.fr/"
