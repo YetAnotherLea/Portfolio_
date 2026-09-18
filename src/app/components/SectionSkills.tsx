@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Watermark from "@/app/components/Watermark";
 
 export default function SectionSkills() {
   const [activeTab, setActiveTab] = useState(0);
@@ -68,9 +69,10 @@ export default function SectionSkills() {
             <div
               key={i}
               onMouseEnter={() => setActiveTab(i)}
+              onClick={() => setActiveTab(i)}
               className={`group cursor-pointer py-5 md:py-6 border-b border-foreground/10 flex justify-between items-center transition-all duration-300 ease-out ${
                 activeTab === i
-                  ? "px-4 bg-foreground/[0.01]"
+                  ? "lg:px-4 lg:bg-foreground/[0.01]"
                   : "hover:px-4 hover:bg-foreground/[0.01]"
               }`}
             >
@@ -127,11 +129,10 @@ export default function SectionSkills() {
         </div>
       </div>
 
-      <div className="absolute inset-x-0 bottom-0 h-[6rem] overflow-hidden pointer-events-none select-none z-0">
-        <h3 className="absolute top-0 left-1/2 -translate-x-1/2 text-[18vw] lg:text-[18rem] font-body font-black uppercase leading-[0.7] opacity-[0.03] whitespace-nowrap">
-          Skills
-        </h3>
-      </div>
+      <Watermark
+        text="Skills"
+        className="text-[18vw] lg:text-[18rem] h-[0.33em]"
+      />
     </section>
   );
 }
