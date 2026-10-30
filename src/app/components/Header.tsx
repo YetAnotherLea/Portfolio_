@@ -6,6 +6,7 @@ import { gsap } from "@/app/lib/gsap";
 const navItems = [
   { id: "projects", label: "Projets" },
   { id: "skills", label: "Skills" },
+  { id: "rncp", label: "RNCP" },
   { id: "contact", label: "Contact" },
 ];
 
