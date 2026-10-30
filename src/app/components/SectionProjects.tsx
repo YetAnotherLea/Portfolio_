@@ -1,33 +1,21 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { GitHubRepo } from "@/app/lib/github";
 import rncpData from "@/app/api/rncp.json";
 import Watermark from "@/app/components/Watermark";
 
-export default function SectionProjects() {
-  const [projects, setProjects] = useState<GitHubRepo[]>([]);
+export default function SectionProjects({
+  projects,
+  loading,
+}: {
+  projects: GitHubRepo[];
+  loading: boolean;
+}) {
   const [selectedProject, setSelectedProject] = useState<GitHubRepo | null>(
     null,
   );
   const [hoveredProject, setHoveredProject] = useState<GitHubRepo | null>(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    fetch("/api")
-      .then((res) => {
-        if (!res.ok) throw new Error("Erreur lors de la récupération");
-        return res.json();
-      })
-      .then((data) => {
-        setProjects(data);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.error(err);
-        setLoading(false);
-      });
-  }, []);
 
   const displayProject = selectedProject || hoveredProject;
 

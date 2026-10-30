@@ -14,7 +14,7 @@ export async function getGitHubProjects(): Promise<GitHubRepo[]> {
 
   const res = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=100`, {
     headers: {
-      "Authorization": `Bearer ${token}`,
+      ...(token && { "Authorization": `Bearer ${token}` }),
       "Accept": "application/vnd.github+json",
       "X-GitHub-Api-Version": "2022-11-28"
     },
