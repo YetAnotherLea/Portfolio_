@@ -38,7 +38,7 @@ function FilterButton({
 }
 
 export default function SectionRncp({ projects }: { projects: GitHubRepo[] }) {
-  const [activeBloc, setActiveBloc] = useState<string | null>(blocs[0].code);
+  const [activeBloc, setActiveBloc] = useState<string | null>(null);
   const [activeProject, setActiveProject] = useState<string | null>(null);
 
   const covers = (project: GitHubRepo, skillId: string) =>
