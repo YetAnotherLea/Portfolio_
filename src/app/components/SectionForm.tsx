@@ -170,15 +170,15 @@ export default function SectionForm() {
               </p>
               <div className="flex items-center md:justify-end lg:justify-end gap-3">
                 <span className="relative flex h-2 w-2">
-                  <span className="absolute inline-flex h-full w-full rounded-full bg-contrast opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-contrast"></span>
+                  <span className="absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
                 </span>
                 <p className="text-xl font-sans uppercase font-black tracking-tighter">
-                  Indisponible
+                  Disponible
                 </p>
               </div>
               <p className="text-sm font-body opacity-60 max-w-[200px] md:max-w-none">
-                Travail en tant que développeuse alternante chez{" "}
+                En poste chez{" "}
                 <a
                   className="underline hover:text-primary transition-colors underline-offset-4"
                   href="https://www.publicom.fr/"
@@ -186,7 +186,7 @@ export default function SectionForm() {
                 >
                   Publicom
                 </a>
-                .
+                , mais toujours ouverte à la discussion.
               </p>
             </div>
           </div>
