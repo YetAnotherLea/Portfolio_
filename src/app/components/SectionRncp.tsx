@@ -24,8 +24,10 @@ function FilterButton({
 }) {
   return (
     <button
+      type="button"
       onClick={onClick}
-      className={`rounded-full border border-foreground px-3 py-0.5 text-sm font-sans transition-colors ${
+      aria-pressed={active}
+      className={`shrink-0 whitespace-nowrap rounded-full border border-foreground px-3 py-1.5 md:py-0.5 text-sm font-sans transition-colors ${
         active
           ? "bg-foreground text-background"
           : "bg-transparent text-foreground hover:bg-foreground/5"
@@ -37,9 +39,35 @@ function FilterButton({
   );
 }
 
+function FilterRow({
+  label,
+  children,
+}: {
+  label: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="flex flex-col gap-2 md:flex-row md:items-center">
+      <span className="md:w-20 shrink-0 text-[10px] uppercase tracking-[0.3em] opacity-40 font-sans">
+        {label}
+      </span>
+      <div className="relative min-w-0 flex-1">
+        <div className="flex gap-2 overflow-x-auto pr-8 md:pr-0 md:flex-wrap md:overflow-visible snap-x [scrollbar-width:none] [&::-webkit-scrollbar]:hidden [&>*]:snap-start">
+          {children}
+        </div>
+        <div
+          aria-hidden="true"
+          className="md:hidden pointer-events-none absolute inset-y-0 right-0 w-8 bg-gradient-to-l from-background to-transparent"
+        />
+      </div>
+    </div>
+  );
+}
+
 export default function SectionRncp({ projects }: { projects: GitHubRepo[] }) {
   const [activeBloc, setActiveBloc] = useState<string | null>(null);
   const [activeProject, setActiveProject] = useState<string | null>(null);
+  const [openSkill, setOpenSkill] = useState<string | null>(null);
 
   const covers = (project: GitHubRepo, skillId: string) =>
     project.topics.includes(skillId.toLowerCase());
@@ -73,10 +101,15 @@ export default function SectionRncp({ projects }: { projects: GitHubRepo[] }) {
     <div className="relative w-full pt-2 overflow-hidden">
       <div className="relative z-10 mb-20">
         <div className="flex flex-col gap-4 pb-6">
-          <div className="flex flex-wrap items-center gap-2">
-            <span className="w-20 text-[10px] uppercase tracking-[0.3em] opacity-40 font-sans">
-              Bloc
-            </span>
+          <a
+            href="https://www.francecompetences.fr/recherche/rncp/38436/"
+            target="_blank"
+            className="self-start md:self-end text-[10px] bg-foreground/5 px-2 py-1 rounded-sm hover:bg-foreground/10 transition-colors font-sans uppercase tracking-widest"
+          >
+            Titre RNCP 38436
+          </a>
+
+          <FilterRow label="Bloc">
             <FilterButton
               active={!activeBloc}
               onClick={() => setActiveBloc(null)}
@@ -95,19 +128,9 @@ export default function SectionRncp({ projects }: { projects: GitHubRepo[] }) {
                 {bloc.title}
               </FilterButton>
             ))}
-            <a
-              href="https://www.francecompetences.fr/recherche/rncp/38436/"
-              target="_blank"
-              className="ml-auto text-[10px] bg-foreground/5 px-2 py-1 rounded-sm hover:bg-foreground/10 transition-colors font-sans uppercase tracking-widest"
-            >
-              Titre RNCP 38436
-            </a>
-          </div>
+          </FilterRow>
 
-          <div className="flex flex-wrap items-center gap-2">
-            <span className="w-20 text-[10px] uppercase tracking-[0.3em] opacity-40 font-sans">
-              Projet
-            </span>
+          <FilterRow label="Projet">
             <FilterButton
               active={!activeProject}
               onClick={() => setActiveProject(null)}
@@ -125,7 +148,7 @@ export default function SectionRncp({ projects }: { projects: GitHubRepo[] }) {
                 {project.name}
               </FilterButton>
             ))}
-          </div>
+          </FilterRow>
         </div>
 
         {skills.length > 0 ? (
@@ -135,31 +158,61 @@ export default function SectionRncp({ projects }: { projects: GitHubRepo[] }) {
           >
             {skills.map((skill) => {
               const linkedProjects = projectsFor(skill.id);
+              const isOpen = openSkill === skill.id;
+              const panelId = `rncp-${skill.id}`;
 
               return (
                 <li
                   key={skill.id}
-                  className={`group flex flex-col justify-between gap-6 p-5 md:p-6 border-r border-b border-foreground/10 hover:bg-foreground/[0.03] transition-colors duration-300 ${
+                  className={`group flex flex-col justify-between md:gap-6 border-r border-b border-foreground/10 hover:bg-foreground/[0.03] transition-colors duration-300 ${
                     linkedProjects.length > 0 ? "" : "opacity-40 hover:opacity-100"
-                  }`}
+                  } ${isOpen ? "max-md:bg-foreground/[0.03] max-md:opacity-100" : ""}`}
                 >
-                  <div className="space-y-3">
-                    <span className="block text-xs font-mono font-bold opacity-60 group-hover:opacity-100 group-hover:text-primary transition-colors">
-                      {skill.id}
+                  <button
+                    type="button"
+                    onClick={() => setOpenSkill(isOpen ? null : skill.id)}
+                    aria-expanded={isOpen}
+                    aria-controls={panelId}
+                    className="w-full text-left p-4 md:p-6 md:pb-0 md:cursor-default space-y-2 md:space-y-3"
+                  >
+                    <span className="flex items-center justify-between gap-3">
+                      <span className="text-xs font-mono font-bold opacity-60 group-hover:opacity-100 group-hover:text-primary transition-colors">
+                        {skill.id}
+                      </span>
+                      <span className="md:hidden flex items-center gap-2 text-[10px] uppercase tracking-wider font-sans opacity-60">
+                        {linkedProjects.length > 0
+                          ? `${linkedProjects.length} projet${linkedProjects.length > 1 ? "s" : ""}`
+                          : "—"}
+                        <span
+                          aria-hidden="true"
+                          className={`text-base leading-none transition-transform duration-300 ${
+                            isOpen ? "rotate-45" : ""
+                          }`}
+                        >
+                          +
+                        </span>
+                      </span>
                     </span>
-                    <p className="text-sm font-body text-foreground/80 leading-snug">
+                    <span
+                      className={`text-sm font-body text-foreground/80 leading-snug md:line-clamp-none ${
+                        isOpen ? "block" : "line-clamp-2"
+                      }`}
+                    >
                       {skill.description_fr}
-                    </p>
-                  </div>
+                    </span>
+                  </button>
 
-                  <div className="flex gap-2 flex-wrap">
+                  <div
+                    id={panelId}
+                    className={`${isOpen ? "flex" : "hidden"} md:flex gap-2 flex-wrap px-4 pb-4 md:px-6 md:pb-6`}
+                  >
                     {linkedProjects.length > 0 ? (
                       linkedProjects.map((project) => (
                         <a
                           key={project.id}
                           href={project.html_url}
                           target="_blank"
-                          className="text-[10px] border border-foreground/20 px-2 py-0.5 rounded-full uppercase tracking-wider font-sans hover:text-accent2 hover:border-accent2 transition-colors"
+                          className="text-[10px] border border-foreground/20 px-3 py-1.5 md:px-2 md:py-0.5 rounded-full uppercase tracking-wider font-sans hover:text-accent2 hover:border-accent2 transition-colors"
                         >
                           {project.name}
                         </a>
