@@ -39,8 +39,6 @@ function FilterButton({
   );
 }
 
-/* Sur mobile : une seule ligne défilable horizontalement (avec fondu à droite).
-   À partir de md : retour à la ligne classique. */
 function FilterRow({
   label,
   children,
@@ -170,7 +168,6 @@ export default function SectionRncp({ projects }: { projects: GitHubRepo[] }) {
                     linkedProjects.length > 0 ? "" : "opacity-40 hover:opacity-100"
                   } ${isOpen ? "max-md:bg-foreground/[0.03] max-md:opacity-100" : ""}`}
                 >
-                  {/* En-tête : bouton accordéon sur mobile, simple bloc sur desktop */}
                   <button
                     type="button"
                     onClick={() => setOpenSkill(isOpen ? null : skill.id)}
