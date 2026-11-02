@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "@/app/lib/gsap";
+import Watermark from "@/app/components/Watermark";
 
 const navItems = [
   { id: "projects", label: "Projets" },
@@ -274,14 +275,20 @@ export default function Header() {
       <header
         ref={headerRef}
         className={`border-b border-foreground/10 bg-background ${
-          isCompact ? "fixed inset-x-0 top-0 z-50 py-3" : "w-full py-11.5"
+          isCompact ? "fixed inset-x-0 top-0 z-50 py-3" : "@container relative w-full py-11.5"
         }`}
       >
+        {!isCompact && (
+          <Watermark
+            text="Portfolio"
+            className="absolute inset-x-0 bottom-0 text-[17.5cqw] h-[0.43em]"
+          />
+        )}
         <div
           className={
             isCompact
               ? "max-w-[1140px] mx-auto px-4 sm:px-8 flex items-center justify-between gap-4"
-              : "grid grid-cols-1 grid-rows-[1fr_auto_auto] md:grid-cols-12 md:grid-rows-1 gap-8 min-h-[calc(100svh-10rem)]"
+              : "relative grid grid-cols-1 grid-rows-[1fr_auto_auto] md:grid-cols-12 md:grid-rows-1 gap-8 min-h-[calc(100svh-10rem)]"
           }
         >
           <div
@@ -294,7 +301,7 @@ export default function Header() {
             {isCompact && (
               <a href="#" aria-label="Retour en haut de la page">
                 <Avatar
-                  className="size-7 sm:size-9 border border-foreground"
+                  className="size-7 sm:size-9 border border-primary"
                   sizes="72px"
                 />
               </a>
@@ -307,7 +314,7 @@ export default function Header() {
               <h1 className="flex flex-wrap items-center gap-x-[0.18em] font-bold leading-[0.95] tracking-[-0.03em] text-[clamp(2.75rem,16vw,4.5rem)] md:text-[clamp(3.5rem,7vw,6.25rem)]">
                 <span>Léa</span>
                 <Avatar
-                  className="size-[0.9em] border-2 border-foreground"
+                  className="size-[0.9em] border-2 border-primary"
                   sizes="(min-width: 768px) 220px, 160px"
                 />
                 <span>Ballester</span>
