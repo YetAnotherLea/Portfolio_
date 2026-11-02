@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "@/app/lib/gsap";
 
@@ -59,6 +60,20 @@ function ResumeIcon({ className }: { className?: string }) {
   );
 }
 
+function LinktreeIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      className={className}
+      aria-hidden="true"
+      focusable="false"
+    >
+      <path d="m13.73635 5.85251 4.00467 -4.11665 2.3248 2.3808 -4.20064 4.00466h5.9085v3.30473h-5.9365l4.22865 4.10766 -2.3248 2.3338L12.0005 12.099l-5.74052 5.76852 -2.3248 -2.3248 4.22864 -4.10766h-5.9375V8.12132h5.9085L3.93417 4.11666l2.3248 -2.3808 4.00468 4.11665V0h3.4727zm-3.4727 10.30614h3.4727V24h-3.4727z" />
+    </svg>
+  );
+}
+
 const socialLinks = [
   {
     key: "linkedin",
@@ -75,6 +90,14 @@ const socialLinks = [
     Icon: GitHubIcon,
   },
   {
+    key: "linktree",
+    href: "https://linktr.ee/YetAnotherLea",
+    label: "Linktree",
+    accent: "hover:text-secondary hover:decoration-secondary",
+    Icon: LinktreeIcon,
+    mobile: true,
+  },
+  {
     key: "resume",
     href: "/resume.pdf",
     label: "Resume",
@@ -82,6 +105,29 @@ const socialLinks = [
     Icon: ResumeIcon,
   },
 ];
+
+function Avatar({
+  className,
+  sizes,
+}: {
+  className?: string;
+  sizes: string;
+}) {
+  return (
+    <span
+      className={`relative block shrink-0 overflow-hidden rounded-full bg-background ${className ?? ""}`}
+    >
+      <Image
+        src="/lea-bitmoji.jpg"
+        alt=""
+        width={1024}
+        height={1024}
+        sizes={sizes}
+        className="absolute left-1/2 top-[-24%] w-[210%] max-w-none -translate-x-1/2 mix-blend-multiply select-none"
+      />
+    </span>
+  );
+}
 
 function NavLinks({
   compact,
@@ -92,14 +138,18 @@ function NavLinks({
 }) {
   return (
     <nav
-      className={`flex flex-row flex-wrap gap-2 ${compact ? "" : "md:flex-col"}`}
+      className={`flex flex-row ${
+        compact ? "flex-nowrap gap-1 sm:gap-2" : "flex-wrap gap-2 md:flex-col"
+      }`}
     >
       {navItems.map((item) => (
         <a
           key={item.id}
           href={`#${item.id}`}
           className={`rounded-full border border-foreground transition-colors font-sans text-center ${
-            compact ? "px-3 py-0.5 text-sm" : "px-4 py-1 text-l w-[100px]"
+            compact
+              ? "px-2 py-0.5 text-[13px] whitespace-nowrap max-[360px]:px-1.5 max-[360px]:text-xs sm:px-3 sm:text-sm"
+              : "px-4 py-1 text-l w-[100px]"
           } ${
             activeSection === item.id
               ? "bg-foreground text-background"
@@ -119,17 +169,17 @@ function SocialLinks({ compact }: { compact: boolean }) {
       className={`flex decoration-foreground/20 ${
         compact
           ? "flex-row items-center gap-4"
-          : "flex-col md:items-end gap-1"
+          : "flex-row flex-wrap gap-x-5 gap-y-1 md:flex-col md:items-end"
       }`}
     >
-      {socialLinks.map(({ key, href, label, accent, Icon }) => (
+      {socialLinks.map(({ key, href, label, accent, Icon, mobile }) => (
         <a
           key={key}
           href={href}
           target="_blank"
           rel="noopener noreferrer"
           aria-label={label}
-          className={`transition-colors ${accent} ${
+          className={`transition-colors ${accent} ${compact && !mobile ? "max-sm:hidden" : ""} ${
             compact ? "text-foreground" : "text-xl underline underline-offset-4"
           }`}
         >
@@ -231,17 +281,38 @@ export default function Header() {
           className={
             isCompact
               ? "max-w-[1140px] mx-auto px-4 sm:px-8 flex items-center justify-between gap-4"
-              : "grid grid-cols-1 md:grid-cols-12 gap-8 items-start"
+              : "grid grid-cols-1 grid-rows-[1fr_auto_auto] md:grid-cols-12 md:grid-rows-1 gap-8 min-h-[calc(100svh-10rem)]"
           }
         >
-          <div className={isCompact ? undefined : "md:col-span-3"}>
+          <div
+            className={
+              isCompact
+                ? "flex items-center gap-2 sm:gap-4 min-w-0"
+                : "order-2 md:order-none md:col-span-3 md:self-start"
+            }
+          >
+            {isCompact && (
+              <a href="#" aria-label="Retour en haut de la page">
+                <Avatar
+                  className="size-7 sm:size-9 border border-foreground"
+                  sizes="72px"
+                />
+              </a>
+            )}
             <NavLinks compact={isCompact} activeSection={activeSection} />
           </div>
 
           {!isCompact && (
-            <div className="md:col-span-6 font-sans text-xl md:text-1xl leading-tight">
-              <p className="font-bold">Léa Ballester</p>
-              <hr className="border-foreground/10 mt-1 mb-1.5" />
+            <div className="order-1 md:order-none md:col-span-6 self-center font-sans text-xl md:text-2xl leading-tight">
+              <h1 className="flex flex-wrap items-center gap-x-[0.18em] font-bold leading-[0.95] tracking-[-0.03em] text-[clamp(2.75rem,16vw,4.5rem)] md:text-[clamp(3.5rem,7vw,6.25rem)]">
+                <span>Léa</span>
+                <Avatar
+                  className="size-[0.9em] border-2 border-foreground"
+                  sizes="(min-width: 768px) 220px, 160px"
+                />
+                <span>Ballester</span>
+              </h1>
+              <hr className="border-foreground/10 mt-6 mb-4" />
               <p>
                 Développeuse web full stack en apprentissage à Epitech Marseille,
                 ce portfolio est un aperçu de mon travail et de mon évolution dans
@@ -252,7 +323,7 @@ export default function Header() {
 
           <div
             className={`font-sans text-sm ${
-              isCompact ? "" : "md:col-span-3 md:text-right space-y-2"
+              isCompact ? "shrink-0" : "order-3 md:order-none md:col-span-3 md:self-start md:text-right space-y-2"
             }`}
           >
             {!isCompact && (
